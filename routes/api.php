@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\API\AuthController;
 
 
 
@@ -21,16 +22,36 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // User Authentication
 
+//registation and login
+
+Route::controller(AuthController::class)->group(function () {
+    Route::post('register', 'register');
+    Route::post('login', 'login');
+    Route::post('logout', 'logout');
+   
+   
+});  
 
 
 
 
 // customer part
 
-Route::resource('customers', CustomerController::class);
 
-Route::resource('products', ProductController::class);
+Route::middleware('auth:sanctum')->group( function () {
+    
 
-Route::resource('employees', EmployeesController::class);
+    Route::resource('customers', CustomerController::class);
 
-Route::resource('oders', OrderController::class);
+    Route::resource('products', ProductController::class);
+    
+    Route::resource('employees', EmployeesController::class);
+    
+    Route::resource('oders', OrderController::class);
+
+});
+
+
+
+
+

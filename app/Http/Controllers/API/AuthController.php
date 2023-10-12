@@ -16,14 +16,15 @@ class AuthController extends Controller
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
+
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             return response()->json([
                 'user' => $user,
-                'authorization' => [
-                    'token' => $user->createToken('ApiToken')->plainTextToken,
-                    'type' => 'bearer',
+                 'authorization' => [
+                  'token' => $user->createToken('ApiToken')->plainTextToken,
+                   'type' => 'bearer',
                 ]
             ]);
         }
@@ -32,6 +33,8 @@ class AuthController extends Controller
             'message' => 'Invalid credentials',
         ], 401);
     }
+
+    // register part
 
     public function register(Request $request)
     {
@@ -52,6 +55,8 @@ class AuthController extends Controller
             'user' => $user
         ]);
     }
+
+    // logout part
 
     public function logout()
     {

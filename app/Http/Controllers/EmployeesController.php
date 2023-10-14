@@ -56,7 +56,12 @@ class EmployeesController extends Controller
      */
     public function edit(Employees $employees)
     {
-        //
+        $employees = Employees::find($employees);
+        return response()->json([
+        "success" => true,
+        "message" => "Employees List",
+        "data" => $employees
+        ]);
     }
 
     /**
@@ -64,7 +69,12 @@ class EmployeesController extends Controller
      */
     public function update(UpdateEmployeesRequest $request, Employees $employees)
     {
-        //
+        $employees->first_name= $request->first_name;
+        $employees->last_name= $request->last_name;
+        //$employees->birthday= $request->birthday;
+        $employees->save(); 
+        $msg="Employees Update succesfully";
+        return response()->json(['success'=>$msg],200);
     }
 
     /**
@@ -72,6 +82,9 @@ class EmployeesController extends Controller
      */
     public function destroy(Employees $employees)
     {
-        //
-    }
+        $employees->delete(); 
+        $msg="Employees Delete succesfully";
+        return response()->json(['success'=>$msg],200);
+
+    }//end destory method of  employ
 }

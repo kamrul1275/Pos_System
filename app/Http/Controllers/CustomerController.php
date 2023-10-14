@@ -29,6 +29,8 @@ class CustomerController extends Controller
         //
     }
 
+    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -58,22 +60,43 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        $customers = Customer::find($customer);
+        return response()->json([
+        "success" => true,
+        "message" => "edit Customer List",
+        "data" => $customers
+        ]);
     }
+
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        //
+        $customer->first_name= $request->first_name;
+        $customer->last_name= $request->last_name;
+        //$customers->birthday= $request->birthday;
+        $customer->money= $request->money;
+        $customer->save();
+          
+        $msg="Customer Updete succesfully";
+        return response()->json(['success'=>$msg],200);
     }
+
+
+
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+        $msg="Customer Delete succesfully";
+        return response()->json(['success'=>$msg],200);
     }
+
 }

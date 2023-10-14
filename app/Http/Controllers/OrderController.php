@@ -58,7 +58,12 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        $order = Order::find($order);
+        return response()->json([
+        "success" => true,
+        "message" => "Edit Order List",
+        "data" => $order
+        ]);
     }
 
     /**
@@ -66,7 +71,14 @@ class OrderController extends Controller
      */
     public function update(UpdateOrderRequest $request, Order $order)
     {
-        //
+        $order->customer_id= $request->customer_id;
+        $order->employer_id= $request->employer_id;
+        $order->product_id= $request->product_id;
+        $order->total_order= $request->total_order;
+        //$oders->order_date= $request->order_date;
+        $order->save(); 
+        $msg="Oder update succesfully";
+        return response()->json(['success'=>$msg],200);
     }
 
     /**
@@ -74,6 +86,8 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete(); 
+        $msg="Oder delete succesfully";
+        return response()->json(['success'=>$msg],200);
     }
 }

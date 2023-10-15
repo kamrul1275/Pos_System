@@ -2,14 +2,14 @@
 
 namespace App\Http\Requests;
 
+
 use Illuminate\Validation\Rules;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 
-
-class UpdateEmployeesRequest extends FormRequest
+class StorePaymentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,11 +27,13 @@ class UpdateEmployeesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required',
-            'last_name' => 'required',
-           
+            'order_id' => 'required',
+            'paymatent_date' => 'required',
+            'amount' => 'required',
         ];
     }
+
+
 
 
     // validation
@@ -44,6 +46,6 @@ class UpdateEmployeesRequest extends FormRequest
             'data'      => $validator->errors()
         ]));
     }
-
+    
 
 }

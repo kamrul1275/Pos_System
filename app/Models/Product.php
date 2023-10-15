@@ -9,11 +9,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Product extends Model
 {
     use HasFactory;
+
     protected $guarded=[];
+
 
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
-    }
+    }// end method
     
 }

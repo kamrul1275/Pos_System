@@ -24,6 +24,7 @@ class Order extends Model
     {
         return $this->belongsTo(Employees::class);
     }//end employees method
+    
 
     public function product(): BelongsTo
     {

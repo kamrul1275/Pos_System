@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\API\AuthController;
 
 
@@ -42,6 +43,9 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::resource('employees', EmployeesController::class);
     
     Route::resource('oders', OrderController::class);
+    
+    Route::resource('payments', PaymentController::class);
+
 
 });
 

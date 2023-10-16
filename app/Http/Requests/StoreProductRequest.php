@@ -32,8 +32,6 @@ class StoreProductRequest extends FormRequest
             'paymatent_date' => 'required',
             'quantity' => 'required',
             'price' => 'required',
-            'created_by' => 'required',
-            'modified_by' => 'required',
         ];
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
@@ -40,8 +41,8 @@ class CustomerController extends Controller
         $customers->first_name= $request->first_name;
         $customers->last_name= $request->last_name;
         $customers->money= $request->money;
-        $customers->created_by= $request->created_by;
-        $customers->modified_by= $request->modified_by;
+        $customers->created_by= Auth::user()->id;
+        //return Auth::user()->id;
         $customers->save();
           
         $msg="Customer added succesfully";
@@ -53,7 +54,12 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        $customer = Customer::find($customer);
+        return response()->json([
+        "success" => true,
+        "message" => "edit Customer List",
+        "data" => $customer
+        ]);
     }
 
     /**
@@ -61,12 +67,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        $customers = Customer::find($customer);
-        return response()->json([
-        "success" => true,
-        "message" => "edit Customer List",
-        "data" => $customers
-        ]);
+        
     }
 
 
@@ -79,8 +80,7 @@ class CustomerController extends Controller
         $customer->first_name= $request->first_name;
         $customer->last_name= $request->last_name;
         $customer->money= $request->money;
-        $customer->created_by= $request->created_by;
-        $customer->modified_by= $request->modified_by;
+        $customer->modified_by= Auth::user()->id;
         $customer->save();
           
         $msg="Customer Updete succesfully";

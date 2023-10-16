@@ -30,8 +30,6 @@ class UpdatePaymentRequest extends FormRequest
             'paymatent_date' => 'required',
             'amount' => 'required',
             'paymentmethod' => 'required',
-            'created_by' => 'required',
-            'modified_by' => 'required',
         ];
     }
 

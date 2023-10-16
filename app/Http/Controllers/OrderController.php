@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use Illuminate\Support\Facades\Auth;
+
 
 class OrderController extends Controller
 {
@@ -40,8 +42,7 @@ class OrderController extends Controller
         $orders->product_id= $request->product_id;
         $orders->total_order= $request->total_order;
         $orders->order_date= $request->order_date;
-        $orders->created_by= $request->created_by;
-        $orders->modified_by= $request->modified_by;
+        $orders->created_by= Auth::user()->id;
         $orders->save(); 
         $msg="Oder added succesfully";
         return response()->json(['success'=>$msg],200);
@@ -52,7 +53,12 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $order = Order::find($order);
+        return response()->json([
+        "success" => true,
+        "message" => "Edit Order List",
+        "data" => $order
+        ]);
     }
 
     /**
@@ -60,12 +66,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        $order = Order::find($order);
-        return response()->json([
-        "success" => true,
-        "message" => "Edit Order List",
-        "data" => $order
-        ]);
+       
     }
 
     /**
@@ -78,8 +79,7 @@ class OrderController extends Controller
         $order->product_id= $request->product_id;
         $order->total_order= $request->total_order;
         $order->order_date= $request->order_date;
-        $order->created_by= $request->created_by;
-        $order->modified_by= $request->modified_by;
+        $order->modified_by= Auth::user()->id;
         $order->save(); 
         $msg="Order update succesfully";
         return response()->json(['success'=>$msg],200);

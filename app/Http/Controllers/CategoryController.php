@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -37,8 +38,7 @@ class CategoryController extends Controller
         $categorys = new Category();
         $categorys->category_name= $request->category_name;
         $categorys->details= $request->details;
-        $categorys->created_by= $request->created_by;
-        $categorys->modified_by= $request->modified_by;
+        $categorys->created_by= Auth::user()->id;
         $categorys->save();
           
         $msg="Category added succesfully";
@@ -50,14 +50,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Category $category)
-    {
+        
         $category = Category::find($category);
         return response()->json([
         "success" => true,
@@ -67,17 +60,22 @@ class CategoryController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Category $category)
+    {
+        
+    }
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-
         $category->category_name= $request->category_name;
         $category->details= $request->details;
-        $category->created_by= $request->created_by;
-        $category->modified_by= $request->modified_by;
+        $category->modified_by= Auth::user()->id;
         $category->save();
-          
         $msg="Category update succesfully";
         return response()->json(['success'=>$msg],201);
     }

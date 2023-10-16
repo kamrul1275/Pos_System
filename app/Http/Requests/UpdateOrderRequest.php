@@ -30,8 +30,7 @@ class UpdateOrderRequest extends FormRequest
             'product_id' => 'required',
             'total_order' => 'required',
             'order_date' => 'required',
-            'created_by' => 'required',
-            'modified_by' => 'required',
+            
         ];
     }
 

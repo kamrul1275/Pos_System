@@ -25,17 +25,12 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('login', 'login');
     Route::post('logout', 'logout');
-   
-   
 });  
-
-
 
 
 // customer part
 
 Route::middleware('auth:sanctum')->group( function () {
-
 
     Route::resource('customers', CustomerController::class);
 
@@ -43,12 +38,11 @@ Route::middleware('auth:sanctum')->group( function () {
     
     Route::resource('employees', EmployeesController::class);
     
-    Route::resource('oders', OrderController::class);
+    Route::resource('orders', OrderController::class);
     
     Route::resource('payments', PaymentController::class);
 
     Route::resource('categorys', CategoryController::class);
-
 
 });
 

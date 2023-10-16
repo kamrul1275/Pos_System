@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Support\Facades\Auth;
+
 
 class ProductController extends Controller
 {
@@ -43,8 +45,8 @@ class ProductController extends Controller
         $products->paymatent_date= $request->paymatent_date;
         $products->price= $request->price;
         $products->quantity= $request->quantity;
-        $products->created_by= $request->created_by;
-        $products->modified_by= $request->modified_by;
+        $products->created_by= Auth::user()->id;
+       
         $products->save();
           
         $msg="Product added succesfully";
@@ -57,7 +59,12 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $product = Product::find($product);
+        return response()->json([
+        "success" => true,
+        "message" => "Product List",
+        "data" => $product
+        ]);
     }
 
 
@@ -66,12 +73,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $product = Product::find($product);
-        return response()->json([
-        "success" => true,
-        "message" => "Product List",
-        "data" => $product
-        ]);
+       
 
     }//end method
 
@@ -87,8 +89,7 @@ class ProductController extends Controller
         $product->paymatent_date= $request->paymatent_date;
         $product->price= $request->price;
         $product->quantity= $request->quantity;
-        $product->created_by= $request->created_by;
-        $product->modified_by= $request->modified_by;
+        $product->modified_by= Auth::user()->id;
         $product->save();
        
         $msg="Product Update succesfully";

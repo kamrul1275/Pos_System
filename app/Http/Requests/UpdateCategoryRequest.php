@@ -25,9 +25,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'category_name' => 'required',
-            'details' => 'required',
-            'created_by' => 'required',
-            'modified_by' => 'required',
+            'details' => 'required'
         ];
     }
 

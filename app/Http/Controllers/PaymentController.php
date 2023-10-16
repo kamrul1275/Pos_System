@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Payment;
 use App\Http\Requests\StorePaymentRequest;
 use App\Http\Requests\UpdatePaymentRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -39,8 +40,7 @@ class PaymentController extends Controller
         $payments->paymatent_date= $request->paymatent_date; 
         $payments->amount= $request->amount; 
         $payments->paymentmethod= $request->paymentmethod; 
-        $payments->created_by= $request->created_by; 
-        $payments->modified_by= $request->modified_by; 
+        $payments->created_by= Auth::user()->id;
         $payments->save();
           
         $msg="Payment added succesfully";
@@ -52,7 +52,12 @@ class PaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        //
+        $payment = Payment::find($payment);
+        return response()->json([
+        "success" => true,
+        "message" => "Payment List",
+        "data" => $payment
+        ]);
     }
 
     /**
@@ -60,12 +65,7 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        $payment = Product::find($payment);
-        return response()->json([
-        "success" => true,
-        "message" => "Payment List",
-        "data" => $payment
-        ]);
+       
     }
 
     /**
@@ -78,8 +78,7 @@ class PaymentController extends Controller
         $payment->paymatent_date= $request->paymatent_date; 
         $payment->amount= $request->amount; 
         $payment->paymentmethod= $request->paymentmethod; 
-        $payment->created_by= $request->created_by; 
-        $payment->modified_by= $request->modified_by; 
+        $payment->modified_by= Auth::user()->id;
         $payment->save();
           
         $msg="Payment update succesfully";

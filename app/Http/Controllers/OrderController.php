@@ -13,11 +13,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $oders = Order::all();
+        $orders = Order::all();
         return response()->json([
         "success" => true,
         "message" => "Order List",
-        "data" => $oders
+        "data" => $orders
         ]);
     }
 
@@ -34,13 +34,13 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        $oders = new Order();
-        $oders->customer_id= $request->customer_id;
-        $oders->employer_id= $request->employer_id;
-        $oders->product_id= $request->product_id;
-        $oders->total_order= $request->total_order;
-        //$oders->order_date= $request->order_date;
-        $oders->save(); 
+        $orders = new Order();
+        $orders->customer_id= $request->customer_id;
+        $orders->employer_id= $request->employer_id;
+        $orders->product_id= $request->product_id;
+        $orders->total_order= $request->total_order;
+        $orders->order_date= $request->order_date;
+        $orders->save(); 
         $msg="Oder added succesfully";
         return response()->json(['success'=>$msg],200);
     }
@@ -75,9 +75,9 @@ class OrderController extends Controller
         $order->employer_id= $request->employer_id;
         $order->product_id= $request->product_id;
         $order->total_order= $request->total_order;
-        //$oders->order_date= $request->order_date;
+        $order->order_date= $request->order_date;
         $order->save(); 
-        $msg="Oder update succesfully";
+        $msg="Order update succesfully";
         return response()->json(['success'=>$msg],200);
     }
 
@@ -87,7 +87,7 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         $order->delete(); 
-        $msg="Oder delete succesfully";
+        $msg="Order delete succesfully";
         return response()->json(['success'=>$msg],200);
     }
 }

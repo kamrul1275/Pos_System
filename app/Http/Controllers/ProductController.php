@@ -37,8 +37,12 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $products = new Product();
-        $products->category= $request->category;
+        $products->product_name= $request->product_name; 
+        $products->product_description= $request->product_description; 
+        $products->category_id= $request->category_id; 
+        $products->paymatent_date= $request->paymatent_date;
         $products->price= $request->price;
+        $products->quantity= $request->quantity;
         $products->save();
           
         $msg="Product added succesfully";
@@ -75,8 +79,12 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->category= $request->category;
+        $product->product_name= $request->product_name; 
+        $product->product_description= $request->product_description; 
+        $product->category_id= $request->category_id; 
+        $product->paymatent_date= $request->paymatent_date;
         $product->price= $request->price;
+        $product->quantity= $request->quantity;
         $product->save();
         $msg="Product Update succesfully";
         return response()->json(['success'=>$msg],201);

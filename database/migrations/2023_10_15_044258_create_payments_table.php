@@ -13,12 +13,28 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id');
+            $table->unsignedBigInteger('order_id')->nullable();
             $table->date('paymatent_date');
-            $table->integer('amount');
+            $table->foreign('order_id')->references('id')->on('orders')->nullOnDelete();
+            $table->integer('amount'); 
+            $table->integer('paymentmethod');
             $table->timestamps();
         });
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Reverse the migrations.

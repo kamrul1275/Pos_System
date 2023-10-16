@@ -29,6 +29,7 @@ class UpdateOrderRequest extends FormRequest
             'employer_id' => 'required',
             'product_id' => 'required',
             'total_order' => 'required',
+            'order_date' => 'required',
         ];
     }
 

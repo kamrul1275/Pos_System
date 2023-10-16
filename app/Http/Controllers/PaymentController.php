@@ -38,6 +38,7 @@ class PaymentController extends Controller
         $payments->order_id= $request->order_id;
         $payments->paymatent_date= $request->paymatent_date; 
         $payments->amount= $request->amount; 
+        $payments->paymentmethod= $request->paymentmethod; 
         $payments->save();
           
         $msg="Payment added succesfully";
@@ -71,9 +72,10 @@ class PaymentController extends Controller
     public function update(UpdatePaymentRequest $request, Payment $payment)
     {
        
-        $payment->order_id= $request->order_id;
-        $payment->paymatent_date= $request->paymatent_date; 
-        $payment->amount= $request->amount; 
+        $payments->order_id= $request->order_id;
+        $payments->paymatent_date= $request->paymatent_date; 
+        $payments->amount= $request->amount; 
+        $payments->paymentmethod= $request->paymentmethod; 
         $payment->save();
           
         $msg="Payment update succesfully";

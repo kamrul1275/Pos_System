@@ -76,7 +76,7 @@ class CustomerController extends Controller
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         $customer->first_name= $request->first_name;
-        dd($request->first_name);
+        //dd($request->first_name);
         $customer->last_name= $request->last_name;
         //$customers->birthday= $request->birthday;
         $customer->money= $request->money;

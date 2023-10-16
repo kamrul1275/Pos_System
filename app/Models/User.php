@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -42,4 +43,41 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+
+
+// product table 
+public function categories(): HasMany
+{
+    return $this->hasMany(Category::class);
+}// end method
+
+
+
+// product table 
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }// end method
+
+// product order 
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }// end method
+
+
+
+    // product order 
+    public function payments(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }// end method
+
+
+
+
+
+
 }

@@ -37,6 +37,8 @@ class CategoryController extends Controller
         $categorys = new Category();
         $categorys->category_name= $request->category_name;
         $categorys->details= $request->details;
+        $categorys->created_by= $request->created_by;
+        $categorys->modified_by= $request->modified_by;
         $categorys->save();
           
         $msg="Category added succesfully";
@@ -72,6 +74,8 @@ class CategoryController extends Controller
 
         $category->category_name= $request->category_name;
         $category->details= $request->details;
+        $category->created_by= $request->created_by;
+        $category->modified_by= $request->modified_by;
         $category->save();
           
         $msg="Category update succesfully";

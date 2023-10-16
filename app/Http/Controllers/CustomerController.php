@@ -39,8 +39,9 @@ class CustomerController extends Controller
         $customers = new Customer();
         $customers->first_name= $request->first_name;
         $customers->last_name= $request->last_name;
-        //$customers->birthday= $request->birthday;
         $customers->money= $request->money;
+        $customers->created_by= $request->created_by;
+        $customers->modified_by= $request->modified_by;
         $customers->save();
           
         $msg="Customer added succesfully";
@@ -76,10 +77,10 @@ class CustomerController extends Controller
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         $customer->first_name= $request->first_name;
-        //dd($request->first_name);
         $customer->last_name= $request->last_name;
-        //$customers->birthday= $request->birthday;
         $customer->money= $request->money;
+        $customer->created_by= $request->created_by;
+        $customer->modified_by= $request->modified_by;
         $customer->save();
           
         $msg="Customer Updete succesfully";

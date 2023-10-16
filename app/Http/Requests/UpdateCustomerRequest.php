@@ -30,6 +30,8 @@ class UpdateCustomerRequest extends FormRequest
             'last_name' => 'required',
             //'birthday' => 'required',
             'money' => 'required',
+            'created_by' => 'required',
+            'modified_by' => 'required',
         ];
     }
 

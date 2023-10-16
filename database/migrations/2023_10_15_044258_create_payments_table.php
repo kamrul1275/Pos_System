@@ -14,10 +14,22 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('order_id')->nullable();
+
+           
+
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('set null')->onUpdate('cascade');
+            
             $table->date('paymatent_date');
-            $table->foreign('order_id')->references('id')->on('orders')->nullOnDelete();
             $table->integer('amount'); 
             $table->integer('paymentmethod');
+
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('modified_by')->nullable();
+            
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
+
+            $table->foreign('modified_by')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

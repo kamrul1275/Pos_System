@@ -14,6 +14,16 @@ class Order extends Model
     protected $guarded=[];
 
 
+    
+
+    public function users(): BelongsTo
+    {
+        return $this->belonhagsTo(User::class);
+    }// end method
+
+
+
+
     public function customers(): BelongsTo
     {
         return $this->belongsTo(Customer::class);

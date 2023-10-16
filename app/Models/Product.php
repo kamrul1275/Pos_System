@@ -13,6 +13,16 @@ class Product extends Model
 
     protected $guarded=[];
 
+
+
+
+    public function users(): BelongsTo
+    {
+        return $this->belonhagsTo(User::class);
+    }// end method
+
+
+
     public function categorys(): BelongsTo
     {
         return $this->belonhagsTo(Category::class);

@@ -17,9 +17,19 @@ return new class extends Migration
             $table->text('product_description');
             $table->unsignedBigInteger('category_id')->nullable();
             $table->date('paymatent_date');
-            $table->foreign('category_id')->references('id')->on('categories')->nullOnDelete();
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null')->onUpdate('cascade');
+
             $table->integer('price');  
-            $table->integer('quantity');
+            $table->integer('quantity'); 
+
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('modified_by')->nullable();
+
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
+
+            $table->foreign('modified_by')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
+
             $table->timestamps();
            
         });

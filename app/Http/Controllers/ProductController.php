@@ -43,6 +43,8 @@ class ProductController extends Controller
         $products->paymatent_date= $request->paymatent_date;
         $products->price= $request->price;
         $products->quantity= $request->quantity;
+        $products->created_by= $request->created_by;
+        $products->modified_by= $request->modified_by;
         $products->save();
           
         $msg="Product added succesfully";
@@ -85,7 +87,10 @@ class ProductController extends Controller
         $product->paymatent_date= $request->paymatent_date;
         $product->price= $request->price;
         $product->quantity= $request->quantity;
+        $product->created_by= $request->created_by;
+        $product->modified_by= $request->modified_by;
         $product->save();
+       
         $msg="Product Update succesfully";
         return response()->json(['success'=>$msg],201);
 

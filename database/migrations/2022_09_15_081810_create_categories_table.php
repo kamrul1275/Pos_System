@@ -15,6 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('category_name');
             $table->string('details');
+            
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('modified_by')->nullable();
+
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
+
+            $table->foreign('modified_by')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
     }

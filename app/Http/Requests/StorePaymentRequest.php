@@ -30,6 +30,9 @@ class StorePaymentRequest extends FormRequest
             'order_id' => 'required',
             'paymatent_date' => 'required',
             'amount' => 'required',
+            'paymentmethod' => 'required',
+            'created_by' => 'required',
+            'modified_by' => 'required',
         ];
     }
 

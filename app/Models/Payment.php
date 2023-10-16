@@ -12,6 +12,13 @@ class Payment extends Model
 
     protected $guarded=[];
 
+    
+
+    public function users(): BelongsTo
+    {
+        return $this->belonhagsTo(User::class);
+    }// end method
+
 
 
     //many to many relation

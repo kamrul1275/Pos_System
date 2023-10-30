@@ -29,7 +29,7 @@ class UpdateProductRequest extends FormRequest
             'product_name' => 'required',
             'product_description' => 'required',
             'category_id' => 'required',
-            'paymatent_date' => 'required',
+          
             'quantity' => 'required',
             'price' => 'required',
         ];

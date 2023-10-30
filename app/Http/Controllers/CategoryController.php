@@ -38,7 +38,7 @@ class CategoryController extends Controller
         $categorys = new Category();
         $categorys->category_name= $request->category_name;
         $categorys->details= $request->details;
-        $categorys->created_by= Auth::user()->id;
+        // $categorys->created_by= Auth::user()->id;
         $categorys->save();
           
         $msg="Category added succesfully";
@@ -74,7 +74,7 @@ class CategoryController extends Controller
     {
         $category->category_name= $request->category_name;
         $category->details= $request->details;
-        $category->modified_by= Auth::user()->id;
+        //$category->modified_by= Auth::user()->id;
         $category->save();
         $msg="Category update succesfully";
         return response()->json(['success'=>$msg],201);

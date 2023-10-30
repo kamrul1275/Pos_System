@@ -40,7 +40,7 @@ class PaymentController extends Controller
         $payments->paymatent_date= $request->paymatent_date; 
         $payments->amount= $request->amount; 
         $payments->paymentmethod= $request->paymentmethod; 
-        $payments->created_by= Auth::user()->id;
+        //$payments->created_by= Auth::user()->id;
         $payments->save();
           
         $msg="Payment added succesfully";
@@ -78,7 +78,7 @@ class PaymentController extends Controller
         $payment->paymatent_date= $request->paymatent_date; 
         $payment->amount= $request->amount; 
         $payment->paymentmethod= $request->paymentmethod; 
-        $payment->modified_by= Auth::user()->id;
+       // $payment->modified_by= Auth::user()->id;
         $payment->save();
           
         $msg="Payment update succesfully";

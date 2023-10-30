@@ -48,15 +48,20 @@ class EmployeesController extends Controller
      */
     public function show(Employees $employees)
     {
-        //
+        $employees = Employees::find($employees);
+        return response()->json([
+        "success" => true,
+        "message" => "Employees List",
+        "data" => $employees
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Employees $employees)
+    public function edit($id)
     {
-        $employees = Employees::find($employees);
+       return  $employees = Employees::find($id);
         return response()->json([
         "success" => true,
         "message" => "Employees List",
@@ -80,11 +85,20 @@ class EmployeesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Employees $employees)
-    {
-        $employees->delete(); 
-        $msg="Employees Delete succesfully";
-        return response()->json(['success'=>$msg],200);
+ 
 
-    }//end destory method of  employ
+
+
+    public function destroy($id)
+    {
+        $employees = Employees::findOrFail($id);
+        $employees->delete();
+        $msg="employe Delete succesfully";
+        return response()->json(['success'=>$msg],200);
+    }
+
+
+
+
+
 }

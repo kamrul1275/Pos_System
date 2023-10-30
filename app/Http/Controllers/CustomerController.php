@@ -41,7 +41,7 @@ class CustomerController extends Controller
         $customers->first_name= $request->first_name;
         $customers->last_name= $request->last_name;
         $customers->money= $request->money;
-        $customers->created_by= Auth::user()->id;
+        // $customers->created_by= Auth::user()->id;
         //return Auth::user()->id;
         $customers->save();
           
@@ -54,7 +54,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        $customer = Customer::find($customer);
+        return $customer = Customer::find($customer);
         return response()->json([
         "success" => true,
         "message" => "edit Customer List",
@@ -68,6 +68,13 @@ class CustomerController extends Controller
     public function edit(Customer $customer)
     {
         
+  
+    //    $customer = Customer::find($customer);
+    //     return response()->json([
+    //     "success" => true,
+    //     "message" => "Customer List",
+    //     "data" => $customer
+    //     ]);
     }
 
 
@@ -80,7 +87,7 @@ class CustomerController extends Controller
         $customer->first_name= $request->first_name;
         $customer->last_name= $request->last_name;
         $customer->money= $request->money;
-        $customer->modified_by= Auth::user()->id;
+        //$customer->modified_by= Auth::user()->id;
         $customer->save();
           
         $msg="Customer Updete succesfully";

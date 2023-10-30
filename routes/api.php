@@ -30,7 +30,7 @@ Route::controller(AuthController::class)->group(function () {
 
 // customer part
 
-Route::middleware('auth:sanctum')->group( function () {
+// Route::middleware('auth:sanctum')->group( function () {
 
     Route::resource('customers', CustomerController::class);
 
@@ -44,7 +44,7 @@ Route::middleware('auth:sanctum')->group( function () {
 
     Route::resource('categorys', CategoryController::class);
 
-});
+// });
 
 
 

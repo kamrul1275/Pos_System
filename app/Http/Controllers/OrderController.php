@@ -42,7 +42,7 @@ class OrderController extends Controller
         $orders->product_id= $request->product_id;
         $orders->total_order= $request->total_order;
         $orders->order_date= $request->order_date;
-        $orders->created_by= Auth::user()->id;
+        //$orders->created_by= Auth::user()->id;
         $orders->save(); 
         $msg="Oder added succesfully";
         return response()->json(['success'=>$msg],200);
@@ -79,7 +79,7 @@ class OrderController extends Controller
         $order->product_id= $request->product_id;
         $order->total_order= $request->total_order;
         $order->order_date= $request->order_date;
-        $order->modified_by= Auth::user()->id;
+        //$order->modified_by= Auth::user()->id;
         $order->save(); 
         $msg="Order update succesfully";
         return response()->json(['success'=>$msg],200);

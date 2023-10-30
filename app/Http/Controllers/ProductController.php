@@ -45,7 +45,7 @@ class ProductController extends Controller
         $products->paymatent_date= $request->paymatent_date;
         $products->price= $request->price;
         $products->quantity= $request->quantity;
-        $products->created_by= Auth::user()->id;
+        // $products->created_by= Auth::user()->id;
        
         $products->save();
           
@@ -89,7 +89,7 @@ class ProductController extends Controller
         $product->paymatent_date= $request->paymatent_date;
         $product->price= $request->price;
         $product->quantity= $request->quantity;
-        $product->modified_by= Auth::user()->id;
+        //$product->modified_by= Auth::user()->id;
         $product->save();
        
         $msg="Product Update succesfully";
